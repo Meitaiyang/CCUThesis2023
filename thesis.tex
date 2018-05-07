@@ -41,6 +41,18 @@
 % Your information goes here
 \input{ntuvars}
 
+
+%%%%%%%%%% water mark start %%%%%%%%%%
+% 借用此套件來擺放浮水印  設定頁首頁尾用的套件
+\usepackage{fancyhdr}
+% 啟動 fancy header/footer 套件
+\pagestyle{fancy}
+\setlength{\headheight}{15pt}
+\renewcommand{\headrulewidth}{0pt} % header 的直線; 0pt 則無線
+\input{watermark.tex}
+%%%%%%%%%% water mark end   %%%%%%%%%%
+
+
 \begin{document}
 
 \frontmatter
