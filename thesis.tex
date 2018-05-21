@@ -8,6 +8,7 @@
 \usepackage{array}
 \usepackage{wallpaper} 
 \usepackage{hyperref}
+\usepackage{amsmath}
 
 % Using the tex-text mapping for ligatures etc.
 \defaultfontfeatures{Mapping=tex-text}
@@ -51,6 +52,15 @@
 \renewcommand{\headrulewidth}{0pt} % header 的直線; 0pt 則無線
 \input{watermark.tex}
 %%%%%%%%%% water mark end   %%%%%%%%%%
+
+%%%%%%%%%% chinese format start   %%%%%%%%%%
+\renewcommand{\contentsname}{目錄}
+\renewcommand{\figurename}{圖}
+\renewcommand{\tablename}{表}
+\renewcommand{\listfigurename}{圖目錄}
+\renewcommand{\listtablename}{表目錄}
+\renewcommand{\bibname}{參考文獻}
+%%%%%%%%%% chinese format end   %%%%%%%%%%
 
 
 \begin{document}
