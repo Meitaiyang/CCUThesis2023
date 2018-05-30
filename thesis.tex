@@ -1,5 +1,6 @@
 \documentclass{ntuthesis}
 
+\usepackage{fancyhdr}
 
 
 \usepackage{times}
@@ -74,6 +75,11 @@
 %%%%%%%%%% chinese format end   %%%%%%%%%%
 
 
+%\fancyhf{} % sets both header and footer to nothing
+%\renewcommand{\headrulewidth}{1pt}
+
+
+
 \begin{document}
 
 \frontmatter
@@ -91,6 +97,22 @@
 
 \mainmatter
 
+
+\pagestyle{fancyplain}
+\renewcommand{\headrulewidth}{1pt}
+\addtolength{\headwidth}{\marginparsep}
+\addtolength{\headwidth}{\marginparwidth}
+\addtolength{\headwidth}{-33mm}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
+\lhead[\fancyplain{}{\bfseries\thepage}]
+{\fancyplain{}{\bfseries\rightmark}}
+\rhead[\fancyplain{}{\bfseries\leftmark}]
+{\fancyplain{}{\bfseries\thepage}}
+\cfoot{}
+
+\pagenumbering{arabic} %puts arabic numbers at top
+
 % Your thesis goes here
 \input{introduction}
 %\input{related}
@@ -106,7 +128,9 @@
 \addcontentsline{toc}{chapter}{\bibname}
 \bibliographystyle{abbrv}
 
-% Your bibliography goes here
+% Your bibliography goes 
+\fancypagestyle{plain}{}
 \bibliography{thesis}
+\bibliographystyle{IEEEtran}
 
 \end{document}
