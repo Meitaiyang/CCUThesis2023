@@ -1,0 +1,114 @@
+\gdef\@thesis{dissertation}
+\def\thesis{\gdef\@thesis{thesis}}
+\def\dissertation{\gdef\@thesis{dissertation}}
+\def\@capitalize#1#2,{\uppercase{#1}\lowercase{#2}}
+\gdef\@department{}
+\def\department#1{\gdef\@department{#1}}
+\gdef\@school{}
+\def\school#1{\gdef\@school{#1}}
+\gdef\@degree{}
+\def\degree#1{\gdef\@degree{#1}}
+\gdef\@month{}
+\def\month#1{\gdef\@month{#1}}
+\gdef\@year{}
+\def\year#1{\gdef\@year{#1}}
+
+\gdef\@student{}
+\def\student#1{\gdef\@student{#1}}
+\gdef\@studenteng{}
+\def\studenteng#1{\gdef\@studenteng{#1}}
+\gdef\@advisor{}
+\def\advisor#1{\gdef\@advisor{#1}}
+\gdef\@advisoreng{}
+\def\advisoreng#1{\gdef\@advisoreng{#1}}
+
+\gdef\@coadvisor{}
+\def\coadvisor#1{\gdef\@coadvisor{#1}}
+\gdef\@coadvisoreng{}
+\def\coadvisoreng#1{\gdef\@coadvisoreng{#1}}
+
+\gdef\@thesistype{}
+\def\thesistype#1{\gdef\@thesistype{#1}}
+\gdef\@thesistypeeng{}
+\def\thesistypeeng#1{\gdef\@thesistypeeng{#1}}
+\gdef\@titleeng{}
+\def\titleeng#1{\gdef\@titleeng{#1}}
+
+\gdef\@signaturepage{}
+\def\signaturepage#1{\gdef\@signaturepage{#1}}
+\gdef\@spA{}
+\def\spA#1{\gdef\@spA{#1}}
+\gdef\@spB{}
+\def\spB#1{\gdef\@spB{#1}}
+
+\gdef\@ack{}
+\def\ack#1{\gdef\@ack{#1}}
+\gdef\@abs{}
+\def\abs#1{\gdef\@abs{#1}}
+
+
+\def\maketitle{\titlepage
+\let\footnotesize\small \let\footnoterule\relax \setcounter{page}{0}
+\begin{center}
+  \baselineskip 14.5pt \vspace*{0.1in}
+  {\Huge\@title \\[0.25in]} %\vfill
+  {\LARGE\@titleeng \\[1in]} %\vfill
+%-  {\Huge\bf\@title}\\[0.25in] \vfill
+\end{center}
+  {\Large\@student} \hspace*{1.73in} {\large\@studenteng}\\[0.1in]
+  {\Large\@advisor} \hspace*{1in} {\large\@advisoreng\\}
+  {\Large\hspace*{1.2in}\@coadvisor} \hspace*{0.96in} {\large\hspace*{0.835in}\@coadvisoreng\\}
+\begin{center}
+  {\Large\@thesistype\\[0.25in]}
+  {\large\@thesistypeeng\\[0.25in]}
+%  A \expandafter\@capitalize\@thesis, Presented\\[0.25in]
+%  by\\[0.25in] \@author \\[0.25in] to\\[0.4in] The Graduate School\\[0.25in]
+%  in Partial Fulfillment of the Requirements\\[0.25in]
+%  for the Degree of\\[0.25in] \@degree\\[0.25in] in\\[0.25in]
+%  \@department\\[0.25in]
+%  \@school\\[0.25in]
+%-  State University of New York \\ at Stony Brook\\[0.25in]
+%  \@month\ \@year
+\end{center}\par
+\null
+\endtitlepage
+\setcounter{footnote}{0} \let\thanks\relax \let\maketitle\relax}
+\def\makecopyright{\titlepage
+\vspace*{\fill}\begin{center}
+\baselineskip 14.5pt Copyright \copyright\ by\\ \@author \\ \@year
+\end{center}\endtitlepage}
+
+\def\makeapproval{\titlepage\setcounter{page}{2}
+\begin{center} \baselineskip 14.5pt {\Large\@signaturepage}
+\end{center} \vspace{0.3in}
+{\baselineskip 14.5pt \Large\@spA\par \vspace{1in}}
+{\Large\@spB\par}
+%\def\member##1{\rule[-0.35in]{3in}{0.01in}\\[0.03in]##1\\}
+%\begin{center}\baselineskip 14.5pt}
+%%\def\endapproval{\end{center}\vspace{0.1in}
+%\centering This \@thesis\ is accepted by the Graduate School.
+%\begin{flushright}\parbox{3in}{\raggedright
+%\baselineskip 14.5pt\centering \member{Dean of the Graduate
+%  School}}\end{flushright} 
+\endtitlepage}
+%\def\abstract{\clearpage\begin{center}\baselineskip14.5pt\vspace*{0.1in}
+%  {\Huge\bf Abstract of the \expandafter\@capitalize\@thesis,}\\[0.2in]
+%  {\Huge\bf \@title}\\[0.2in] by\\[0.2in] \@author\\[0.2in]
+%  \@degree\\[0.2in] in\\[0.2in] \@department\\[0.2in]
+% State University of New York \\ at Stony Brook\\[0.2in] \@year
+%\end{center}\par\vspace{0.4in}}
+%\def\endabstract{\endquotation\par\vfil\null\clearpage}
+\def\dedication{\clearpage\thispagestyle{empty}\vspace*{\fill}\begin{center}}
+\def\enddedication{\end{center}\vspace*{\fill}\newpage}
+\def\preface{\clearpage\thispagestyle{empty}\chapter*{Preface}
+  \addcontentsline{toc}{chapter}{\protect\numberline{}{Preface}}}
+\let\endpreface=\clearpage
+\def\acknowledgements{\clearpage\thispagestyle{empty}
+%  \chapter*{Acknowledgements}
+  \chapter*{\@ack}
+  \addcontentsline{toc}{chapter}{\protect\numberline{}{\@ack}}}
+\let\endacknowledgements=\clearpage
+\def\abstract{\clearpage\thispagestyle{empty}
+  \chapter*{\@abs}
+  \addcontentsline{toc}{chapter}{\protect\numberline{}{\@abs}}}
+\let\endabstract=\clearpage

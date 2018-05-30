@@ -33,12 +33,14 @@
 
 % Declarations
 \DeclareRobustCommand{\university}[2]{\gdef\@universityen{#1}\gdef\@universityzh{#2}}
+\DeclareRobustCommand{\address}[2]{\gdef\@addressen{#1}\gdef\@addresszh{#2}}
 \DeclareRobustCommand{\college}[2]{\gdef\@collegeen{#1}\gdef\@collegezh{#2}}
 \DeclareRobustCommand{\institute}[2]{\gdef\@instituteen{#1}\gdef\@institutezh{#2}}
 \DeclareRobustCommand{\title}[2]{\gdef\@titleen{#1}\gdef\@titlezh{#2}}
 \DeclareRobustCommand{\author}[2]{\gdef\@authoren{#1}\gdef\@authorzh{#2}}
 \DeclareRobustCommand{\studentid}[1]{\gdef\@studentid{#1}}
 \DeclareRobustCommand{\advisor}[2]{\gdef\@advisoren{#1}\gdef\@advisorzh{#2}}
+\DeclareRobustCommand{\coadvisor}[2]{\gdef\@coadvisoren{#1}\gdef\@coadvisorzh{#2}}
 \DeclareRobustCommand{\defenseyear}[2]{\gdef\@yearen{#1}\gdef\@yearzh{#2}}
 \DeclareRobustCommand{\defensemonth}[2]{\gdef\@monthen{#1}\gdef\@monthzh{#2}}
 \DeclareRobustCommand{\defenseday}[1]{\gdef\@day{#1}}
@@ -50,35 +52,61 @@
 \abstractname{Abstract}{摘要}
 \acknowledgements{Acknowledgements}{誌謝}
 
+%\DeclareRobustCommand{\makecover}{
+%  \begin{titlepage}
+%    \vspace{1cm}
+%    \begin{singlespace}
+%    \begin{center}
+%      \fontsize{18}{27}\selectfont
+%      \@universityzh\@collegezh\@institutezh\par
+%        \@typezh{}\@classzh\par
+%      {\fontsize{14}{21}\selectfont
+%        \@instituteen\par
+%        \@collegeen\par}
+%      {\fontsize{16}{24}\selectfont
+%        \@universityen\par
+%        \@typeen{} \@classen\par}
+%      \vspace{\fill}
+%      \@titlezh\par
+%      \@titleen\par
+%      \vspace{\fill}
+%      \@authorzh\\
+%      \@authoren\par
+%      \vspace{2cm}
+%      指導教授：\@advisorzh \\
+%      Advisor: \@advisoren \par
+%      \vspace{1.5cm}
+%      中華民國 \@yearzh 年 \@monthzh 月\\
+%      \@monthen, \@yearen
+%    \end{center}
+%    \end{singlespace}
+%    \vspace{1cm}
+%  \end{titlepage}
+%}
+
 \DeclareRobustCommand{\makecover}{
   \begin{titlepage}
-    \vspace{1cm}
     \begin{singlespace}
+	\let\footnotesize\small \let\footnoterule\relax \setcounter{page}{0}
+	\begin{center}
+		\baselineskip 14.5pt \vspace*{0.1in}
+		{\Huge\@titlezh\\[0.25in]\par } 
+		{\LARGE\@titleen\\[1in]\par } 
+	\end{center}
+	{\Large 研究生：\@authorzh} \hspace*{1.73in} {\large Student: \@authoren}\\[0.1in]
+	{\Large 指導教授：\@advisorzh} \hspace*{1in} {\large Advisor: \@advisoren\\}
+	{\Large\hspace*{1.2in}\@coadvisorzh} \hspace*{0.96in} {\large\hspace*{0.835in}\@coadvisoren\\}
     \begin{center}
-      \fontsize{18}{27}\selectfont
-      \@universityzh\@collegezh\@institutezh\par
-        \@typezh{}\@classzh\par
-      {\fontsize{14}{21}\selectfont
-        \@instituteen\par
-        \@collegeen\par}
-      {\fontsize{16}{24}\selectfont
-        \@universityen\par
-        \@typeen{} \@classen\par}
-      \vspace{\fill}
-      \@titlezh\par
-      \@titleen\par
-      \vspace{\fill}
-      \@authorzh\\
-      \@authoren\par
-      \vspace{2cm}
-      指導教授：\@advisorzh\\
-      Advisor: \@advisoren\par
-      \vspace{1.5cm}
-      中華民國 \@yearzh 年 \@monthzh 月\\
-      \@monthen, \@yearen
+		{\Large\@universityzh\@collegezh\\\@institutezh\\\@typezh{}\@classzh\\[0.25in]\par}
+		{\large A Thesis\\Submitted to\\Institute of \@instituteen\\}
+		{\large \@collegeen\\\@universityen\\}
+		{\large in Partial Fulfillment of the Requirements\\for the Degree of\\Master\\in\\}
+		{\large \@instituteen \\}
+		{\large \@monthen, \@yearen \\}
+		{\large \@addressen \\[0.25in]}
+		      
     \end{center}
     \end{singlespace}
-    \vspace{1cm}
   \end{titlepage}
 }
 
