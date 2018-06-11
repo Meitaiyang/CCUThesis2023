@@ -1,7 +1,5 @@
 \documentclass{ntuthesis}
-
-
-
+\usepackage{indentfirst}
 \usepackage{times}
 \usepackage{verbatim}
 \usepackage{color}
@@ -12,12 +10,93 @@
 \usepackage{hyperref}
 \usepackage{amsmath}
 
+\usepackage[utf8]{inputenc}
+\usepackage{glossaries}
+\setglossarystyle{long3colheader}
 
+\usepackage{csvsimple} % 輸入中英文對照表 csv 用
+\usepackage{fancyhdr} % 借用此套件來擺放浮水印  設定頁首頁尾用的套件
+
+%% ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼  表格相關  ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼
+\usepackage{booktabs}
+\usepackage{multirow} % 表格跨欄
+\usepackage{caption} 
+\captionsetup[table]{skip=5pt}
+%% ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲  表格相關  ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲
+
+%% ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼  目錄行距  ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼
+\usepackage{tocloft}
+\setlength\cftbeforechapskip{0pt}
+\setlength{\cftbeforesecskip}{-8pt}
+\setlength{\cftbeforesubsecskip}{-8pt}
+\renewcommand{\cftchapafterpnum}{\vspace{5pt}}
+
+%\hypersetup{%
+%	colorlinks=true,% switch on coloured instead of framed links
+%	linkcolor=[rgb]{0.713,0.188,0.09},% main link color (e.g. for the ToC)182,48,23
+%	filecolor=magenta,% color of links to external files
+%	urlcolor=red,% color to external URLs
+%}   
+%% ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲  目錄行距  ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲  
+
+
+
+%% ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼  中文章節  ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼
 \usepackage{titlesec}
 \usepackage{titletoc}
 \usepackage{xCJKnumb}
-%\titleformat{\chapter}{\centering\Huge\bfseries}{第\,\xCJKnumber{\thechapter}\,章}{1em} {}
-\titleformat{\chapter}{\huge\bfseries}{第\,\xCJKnumber{\thechapter}\,章}{1em}{}
+\newcommand{\tocformat}{%
+	\titleformat{\chapter}
+		{\huge\bfseries}
+		{第\,\xCJKnumber{\thechapter}\,章}{-3.3em}\\{}
+}
+\newcommand{\tocformatbib}{%
+	\titleformat{\chapter}
+	{\huge\bfseries}
+	{第\,\xCJKnumber{\thechapter}\,章}{1em}{}	
+}
+
+
+\renewcommand{\contentsname}{目錄}
+\renewcommand{\figurename}{圖}
+\renewcommand{\tablename}{表}
+\renewcommand{\listfigurename}{圖目錄}
+\renewcommand{\listtablename}{表目錄}
+\renewcommand{\bibname}{參考文獻}
+%% ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲  中文章節  ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲  
+
+
+%% ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼  浮水印    ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼
+\pagestyle{fancy} % 啟動 fancy header/footer 套件
+\setlength{\headheight}{15pt}
+\renewcommand{\headrulewidth}{0pt} % header 的直線; 0pt 則無線
+\input{watermark.tex}
+%% ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲  浮水印    ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲  
+
+
+%% ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼  頁首頁尾  ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
+
+\pagestyle{fancy} % 啟動 fancy header/footer 套件
+
+\fancypagestyle{normal_chapter}{%
+	\renewcommand{\headrulewidth}{0.5pt}
+	\addtolength{\headwidth}{\marginparsep}
+	\addtolength{\headwidth}{\marginparwidth}
+	\addtolength{\headwidth}{-33mm}
+	%% 頁首 - 右
+	\rhead[\fancyplain{}{\bfseries\leftmark}]{%
+		\fancyplain{}{\bfseries\thepage}
+	}
+	%% 頁首 - 左
+	\lhead[\fancyplain{}{\bfseries\thepage}]{%
+		\fancyplain{}{\bfseries\rightmark}
+	}
+	\cfoot{} % 清除頁尾頁碼
+}
+%% ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲  頁首頁尾  ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲
+
 
 % Using the tex-text mapping for ligatures etc.
 \defaultfontfeatures{Mapping=tex-text}
@@ -26,7 +105,7 @@
 %\setmainfont{Times New Roman}
 \setCJKmainfont{標楷體}
 % Windows 字型
-% > %windir%\fonts
+% > dir %windir%\fonts
 
 \ifdefined\withwatermark
   \CenterWallPaper{0.174}{watermark.pdf}
@@ -51,62 +130,60 @@
 \makeatother
 
 % Your information goes here
-\input{ntuvars}
-
-
-%%%%%%%%%% water mark start %%%%%%%%%%
-% 借用此套件來擺放浮水印  設定頁首頁尾用的套件
-\usepackage{fancyhdr}
-% 啟動 fancy header/footer 套件
-\pagestyle{fancy}
-\setlength{\headheight}{15pt}
-\renewcommand{\headrulewidth}{0pt} % header 的直線; 0pt 則無線
-\input{watermark.tex}
-%%%%%%%%%% water mark end   %%%%%%%%%%
-
-%%%%%%%%%% chinese format start   %%%%%%%%%%
-\renewcommand{\contentsname}{目錄}
-\renewcommand{\figurename}{圖}
-\renewcommand{\tablename}{表}
-\renewcommand{\listfigurename}{圖目錄}
-\renewcommand{\listtablename}{表目錄}
-\renewcommand{\bibname}{參考文獻}
-%%%%%%%%%% chinese format end   %%%%%%%%%%
+\input{thesis_vars}
 
 
 \begin{document}
 
-\frontmatter
+	\frontmatter
 
-\makecover
+	\makecover
 
-\makecertification
+	\makecertification
 
-\input{acknowledgements}
-\input{abstract}
+	\input{acknowledgements}
+	\input{abstract}
 
-\tableofcontents
-\listoffigures
-\listoftables
+%	{
+%		\hypersetup{%
+%				pdfborder = {0 0 0}%移除超連結外的紅框框
+%			} 
+			\addtocontents{toc}{\protect{\pdfbookmark[0]{\contentsname}{toc}}}%把目錄頁加入pdf書籤
+			\clearpage % 換頁
+			\tableofcontents 
+			\clearpage % 換頁		
+			\listoffigures
+			
+			\clearpage % 換頁
+			\listoftables 
+			
+%	}
 
-\mainmatter
+	\mainmatter
 
-% Your thesis goes here
-\input{introduction}
-%\input{related}
-%\input{photoshoot}
-%\input{modeling}
-%\input{application}
-%\input{conclusion}
+	\pagestyle{normal_chapter} %改變頁首、頁尾樣式 (不包含chapter頁 (plain))
+	\tocformat
+	% Your thesis goes here
+	\input{introduction}
+	%\input{related}
+	%\input{photoshoot}
+	%\input{modeling}
+	%\input{application}
+	%\input{conclusion}
 
-\appendix
+	\tocformatbib
+	\appendix
+	
+	\backmatter
+	
+	\addcontentsline{toc}{chapter}{\bibname}
+	%\bibliographystyle{abbrv}
+	
 
-\backmatter
-
-\addcontentsline{toc}{chapter}{\bibname}
-\bibliographystyle{abbrv}
-
-% Your bibliography goes here
-\bibliography{thesis}
+	\bibliographystyle{IEEEtran}
+	%\bibliographystyle{unsrtnat}
+	
+	% Your bibliography goes here
+	\bibliography{thesis}
 
 \end{document}
