@@ -11,7 +11,7 @@ Template 修改自 [tzhuan/ntu-thesis](https://github.com/tzhuan/ntu-thesis)
 ----------
 您可以直接 clone 這個 git repository，或者您可以在[這裡](https://github.com/tzhuan/ntu-thesis/tags)下載發行版本。
 
-說明
+使用說明
 ----------
 請參考 [wiki](https://github.com/tzhuan/ntu-thesis/wiki) 的說明。
 
