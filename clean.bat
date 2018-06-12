@@ -6,3 +6,11 @@ DEL *.lot
 DEL *.toc
 DEL *.bbl
 DEL *.blg
+DEL *.glg
+DEL *.glo
+DEL *.gls
+DEL *.ist
+DEL *.maf
+DEL *.bak
+DEL *.out
+DEL *.brf

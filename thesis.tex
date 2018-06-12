@@ -13,7 +13,8 @@
 
 \usepackage[utf8]{inputenc}
 \usepackage{glossaries}
-\setglossarystyle{long3colheader}
+%\setglossarystyle{long3colheader}
+\usepackage{longtable}
 
 \usepackage{csvsimple} % 輸入中英文對照表 csv 用
 \usepackage{fancyhdr} % 借用此套件來擺放浮水印  設定頁首頁尾用的套件
@@ -132,6 +133,7 @@
 
 % Your information goes here
 \input{thesis_vars}
+\input{glossary}
 
 \begin{document}
 
@@ -157,6 +159,11 @@
 			\clearpage % 換頁
 			\listoftables 
 			
+			\clearpage
+			\glossarystyle{aiaostyle}
+			\setlength{\glsdescwidth}{0.5\textwidth}
+			\setlength{\glspagelistwidth}{0.1\textwidth}
+			\printglossary[title={中英文字對照}]
 %	}
 
 	\mainmatter
