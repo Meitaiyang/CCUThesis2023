@@ -13,5 +13,6 @@ Template 修改自 [tzhuan/ntu-thesis](https://github.com/tzhuan/ntu-thesis)
 
 使用說明
 ----------
-請參考 [wiki](https://github.com/tzhuan/ntu-thesis/wiki) 的說明。
+![](doc_fig/important.png)
+請參考 [wiki](https://github.com/tzhuan/ntu-thesis/wiki) 的說明，其中包含中英文對照的使用方法。
 
