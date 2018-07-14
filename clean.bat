@@ -14,3 +14,4 @@ DEL *.maf
 DEL *.bak
 DEL *.out
 DEL *.brf
+DEL *.sav

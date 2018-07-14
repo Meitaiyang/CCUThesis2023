@@ -14,7 +14,7 @@
 \usepackage{amsmath}
 \usepackage{amssymb} % \mathbb
 
-
+\usepackage{notoccite}  % 引用編號時忽略圖目錄裡出現的引用 Ignore citations in captions in list of figures when numbering  https://tex.stackexchange.com/questions/36304/ignore-citations-in-captions-in-list-of-figures-when-numbering
 
 \newcommand{\refFig}[1]{%
 	圖\ref{#1} - p.\pageref{#1}
@@ -169,7 +169,7 @@
 	
 	\input{acknowledgements}
 	\input{abstract}
-	
+	\clearpage % 換頁
 	{
 	\hypersetup{%
 			pdfborder = {0 0 0}%移除超連結外的紅框框
