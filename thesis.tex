@@ -1,5 +1,7 @@
 \documentclass{ntuthesis}
 
+
+\usepackage{cite} % 使連續的引用可以變成破折號\cite{newcombe2011dtam,engel2014lsd,engel2018direct} ex [4][5][6] => [4-6]
 \usepackage{indentfirst}
 \usepackage{times}
 \usepackage{verbatim}
@@ -10,20 +12,40 @@
 \usepackage{wallpaper} 
 \usepackage{hyperref}
 \usepackage{amsmath}
+\usepackage{amssymb} % \mathbb
 
-\usepackage[utf8]{inputenc}
-\usepackage{glossaries}
-%\setglossarystyle{long3colheader}
-\usepackage{longtable}
 
-\usepackage{csvsimple} % 輸入中英文對照表 csv 用
+
+\newcommand{\refFig}[1]{%
+	圖\ref{#1} - p.\pageref{#1}
+}
+
+\newcommand{\refP}[1]{%
+	\ref{#1} - p.\pageref{#1}
+}
+
+\interfootnotelinepenalty=10000 % 防止footnote分頁
+
+\input{glossary} % 中英文字對照
+
+%\usepackage{csvsimple} % 輸入中英文對照表 csv 用
 \usepackage{fancyhdr} % 借用此套件來擺放浮水印  設定頁首頁尾用的套件
+
+%% ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼  數學相關  ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼
+\usepackage{mathtools}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+\usepackage{siunitx}% degree symbol
+%% ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲  數學相關  ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲
 
 %% ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼  表格相關  ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼
 \usepackage{booktabs}
 \usepackage{multirow} % 表格跨欄
 \usepackage{caption} 
 \captionsetup[table]{skip=5pt}
+\usepackage{threeparttable}
+\usepackage{tabularx}
+
 %% ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲  表格相關  ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲
 
 %% ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼  目錄行距  ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼
@@ -133,64 +155,71 @@
 
 % Your information goes here
 \input{thesis_vars}
-\input{glossary}
+
+
+
 
 \begin{document}
 
 	\frontmatter
-
+	
 	\makecover
-
+	
 	\makecertification
-
+	
 	\input{acknowledgements}
 	\input{abstract}
-
-%	{
-%		\hypersetup{%
-%				pdfborder = {0 0 0}%移除超連結外的紅框框
-%			} 
-			\addtocontents{toc}{\protect{\pdfbookmark[0]{\contentsname}{toc}}}%把目錄頁加入pdf書籤
-			\clearpage % 換頁
-			\tableofcontents 
-			\clearpage % 換頁		
-			\listoffigures
-			
-			\clearpage % 換頁
-			\listoftables 
-			
-			\clearpage
-			\glossarystyle{aiaostyle}
-			\setlength{\glsdescwidth}{0.5\textwidth}
-			\setlength{\glspagelistwidth}{0.1\textwidth}
-			\printglossary[title={中英文字對照}]
-%	}
-
+	
+	{
+	\hypersetup{%
+			pdfborder = {0 0 0}%移除超連結外的紅框框
+		} 
+	    \addtocontents{toc}{\protect{\pdfbookmark[0]{\contentsname}{toc}}}%把目錄頁加入pdf書籤
+		\tableofcontents  
+		\listoffigures
+		
+		\clearpage % 換頁
+		\listoftables 
+		
+		\clearpage
+		\glossarystyle{aiaostyle}                     % 中英文字對照
+		\setlength{\glsdescwidth}{0.5\textwidth}      % 中英文字對照
+		\setlength{\glspagelistwidth}{0.1\textwidth}  % 中英文字對照
+		\printglossary[title={中英文字對照}]           % 中英文字對照
+		
+%		\chapter*{中英文字對照}
+%
+%		\csvreader[tabular=l l l l ,
+%				   table head=\hline & 中文 & 英文 & 縮寫\\\hline,
+%        		   late after line=\\\hline]%
+%			{eng_cht_table.csv}%
+%			{zh=\zh,eng=\eng,abbrev=\abbrev}%
+%			{\thecsvrow & \zh & \eng & \abbrev}%
+		
+	}
+	
 	\mainmatter
-
+	
 	\pagestyle{normal_chapter} %改變頁首、頁尾樣式 (不包含chapter頁 (plain))
+
 	\tocformat
 	% Your thesis goes here
 	\input{introduction}
 	%\input{related}
-	%\input{photoshoot}
-	%\input{modeling}
-	%\input{application}
+	%\input{method}
+	%\input{experiment}
 	%\input{conclusion}
 
+	
 	\tocformatbib
 	\appendix
 	
 	\backmatter
 	
-	\addcontentsline{toc}{chapter}{\bibname}
-	%\bibliographystyle{abbrv}
-	
-
+	%% 參考文獻
+	\addcontentsline{toc}{chapter}{\bibname} %摘要、文獻等頁碼編進目錄
 	\bibliographystyle{IEEEtran}
-	%\bibliographystyle{unsrtnat}
-	
-	% Your bibliography goes here
 	\bibliography{thesis}
+
 
 \end{document}
