@@ -16,3 +16,5 @@ Template 修改自 [tzhuan/ntu-thesis](https://github.com/tzhuan/ntu-thesis)
 ![](https://github.com/HTLife/ccu-thesis/raw/master/doc_fig/Important.png)
 請參考 [wiki](https://github.com/HTLife/ccu-thesis/wiki) 的說明，其中包含中英文對照的使用方法。
 
+如有疑問或bug請至 [issues](https://github.com/HTLife/ccu-thesis/issues) 發問
+
