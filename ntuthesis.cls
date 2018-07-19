@@ -94,7 +94,7 @@
 		{\LARGE\@titleen\\[1in]\par } 
 	\end{center}
 	{\Large 研究生：\@authorzh} \hspace*{1.73in} {\large Student: \@authoren}\\[0.1in]
-	{\Large 指導教授：\@advisorzh} \hspace*{1in} {\large Advisor: \@advisoren\\}
+	{\Large 指導教授：\@advisorzh} \hspace*{1in} {\large Advisor: \@advisoren}\\[0.1in]
 	{\Large\hspace*{1.2in}\@coadvisorzh} \hspace*{0.96in} {\large\hspace*{0.835in}\@coadvisoren\\}
     \begin{center}
 		{\Large\@universityzh\@collegezh\\\@institutezh\\\@typezh{}\@classzh\\[0.25in]\par}
