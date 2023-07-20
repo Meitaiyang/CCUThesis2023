@@ -15,3 +15,5 @@ DEL *.bak
 DEL *.out
 DEL *.brf
 DEL *.sav
+DEL *.pdf
+DEL *.gz

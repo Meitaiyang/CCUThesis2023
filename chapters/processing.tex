@@ -1,0 +1,31 @@
+\chapter{架構方法}
+\label{chapter:processing}
+
+\begin{algorithm}
+    \caption{Bubble Sort}
+    \begin{algorithmic}
+        \renewcommand{\algorithmicrequire}{\textbf{Input:}}
+        \renewcommand{\algorithmicensure}{\textbf{Output:}}
+        \REQUIRE Input Array A[]
+        \ENSURE  Sorted Array A[]
+        \\ \textit{Initialisation} :
+        \STATE int $i,j,k;$
+        \STATE int $N \gets length(A);$
+        \\ \textit{LOOP Process}
+        \FOR {$i = 0$ to $N-1$}
+            \FOR {$j = 0$ to $N-i-1$}
+                \IF {($A[j] > A[j+1]$)}
+                    \STATE swap($A[j]$, $A[j+1]$)
+                \ENDIF
+            \ENDFOR
+        \ENDFOR
+        \RETURN $A$ 
+    \end{algorithmic} 
+    \label{alg:alg1}
+\end{algorithm}
+
+\section{系統架構說明}
+\label{sec:processing}
+
+這個架構\ldots
+   

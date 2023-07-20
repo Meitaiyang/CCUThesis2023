@@ -1,21 +1,20 @@
-# 中正大學碩博士論文 XeLaTeX 模版
+# 2022年中正大學碩博士論文XeLaTeX模版
 
-Template 修改自 [tzhuan/ntu-thesis](https://github.com/tzhuan/ntu-thesis)
+Template 修改自 [HTLife/ccu-thesis](https://github.com/HTLife/ccu-thesis)
 
-前言
-----------
-
-這個模版的前身是 LaTeX+CJK 的模版，如果您還是想用 LaTeX+CJK，請參考[這篇文章](http://www.csie.ntu.edu.tw/~tzhuan/www/resources/ntu/)。
-
-下載
-----------
-您可以直接 clone 這個 git repository，或者您可以在[這裡](https://github.com/HTLife/ccu-thesis/tags)下載發行版本。
-
-使用說明
-----------
-![](https://github.com/HTLife/ccu-thesis/raw/master/doc_fig/Important.png)
-
-1. 請參考 [wiki](https://github.com/HTLife/ccu-thesis/wiki) 的說明，其中包含中英文對照的使用方法。
-2. 使用TexStudio編譯時，請打開thesis.tex頁籤再編譯，直接編輯子檔案如introduction會出現錯誤
-3. 如有疑問或bug請至 [issues](https://github.com/HTLife/ccu-thesis/issues) 發問
-
+## 版本更新
+- Version 2.0 2023/07/20
+    - 重新從[HTLife/ccu-thesis](https://github.com/HTLife/ccu-thesis)fork過來
+    - 增加了`descitemize`的功能
+    - 修正了圖片、表格標示的問題
+    - 修正了目錄的格式
+    - 修正`hyperref`行距問題
+- Version 1.1 2022/09/17
+    - 新增了`Algorithm`套件以及範例
+- Version 1.0 2022/07/18
+    - 這個版本去掉了中英文字對照表
+    - 第二頁去掉了自動生成的口試委員審定書，改以空白頁面代替，之後可方便貼上口試審定書掃描檔
+## 使用說明
+- 請先到`thesis_vars.tex`修改個人資訊(學校,系所,姓名,etc...)及論文關鍵字
+- 章節請獨立出單獨的`.tex`檔並整理進`chapters`資料夾、圖片請整理進`figures`資料夾
+- 如有疑問或bug請至[issues](https://github.com/Meitaiyang/CCUThesis2022/issues)發問

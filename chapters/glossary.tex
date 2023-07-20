@@ -1,0 +1,103 @@
+%https://tex.stackexchange.com/questions/98241/usepackageglossaries-with-3-columns
+
+\usepackage[utf8]{inputenc}
+\usepackage[sort=use]{glossaries}
+\setglossarystyle{long3colheader}
+
+% 縮短 引用 Glossary 指令
+\newcommand{\gRef}[1]{%
+	\Gls{#1}（\glsdesc{#1}, \glsentryuseri{#1}）
+}
+
+% 縮短 引用 Glossary 指令 (無縮寫)
+\newcommand{\gRefNA}[1]{%
+	\Gls{#1}（\glsdesc{#1}）
+}
+
+% 縮短 新增 Glossary entry 指令
+\newcommand{\gnew}[3]{%
+	%\newglossaryentry{SLAM}
+	%{
+	%    name={同步定位與地圖構建},%
+	%    description={Simultaneous Localization And Mapping},%
+	%	user1={SLAM}
+	%}
+	\newglossaryentry{#1}
+	{
+		name={#2},%
+		description={#3},%
+		user1={#1}
+	}
+}
+
+% 縮短 新增 Glossary entry 指令 (無縮寫)  NoAbbrev
+\newcommand{\gnewNA}[2]{%
+	\newglossaryentry{#1}
+	{
+		name={#2},%
+		description={#1}%
+	}
+}
+
+\makeglossaries
+
+%% (有縮寫)
+\gnew{SLAM}{同步定位與地圖構建}{Simultaneous Localization And Mapping}
+\gnew{IMU}{慣性測量單元}{Inertial measurement unit}
+\gnew{VIO}{視覺慣性里程計}{Visual-Inertial Odometry}
+\gnew{VI-SLAM}{視覺慣性SLAM}{Visual-Inertial SLAM}
+\gnew{VO}{視覺里程計}{Visual Odometry}
+\gnew{ToF}{時差測距}{Time of flight}
+\gnew{CNN}{卷積神經網絡}{Convolutional Neural Network}
+\gnew{MEMS}{微機電系統}{Microelectromechanical Systems}
+\gnew{V-SLAM}{視覺SLAM}{Visual SLAM}
+\gnew{GPS}{全球定位系統}{Global Positioning System}
+
+%% (無縮寫)
+\gnewNA{monocular}{單目}%\gRefNA{Robustness}
+\gnewNA{Robustness}{強健性}
+\gnewNA{Loop closure}{閉環檢測}
+\gnewNA{Sensor fusion}{感測器融合}
+
+
+
+
+%% Glossay 列表樣式
+
+\newglossarystyle{aiaostyle}{%
+	% put the glossary in a longtable environment:
+	\renewenvironment{theglossary}%
+	{\begin{longtable}{lp{\glsdescwidth}cp{\glspagelistwidth}}}%
+	{\end{longtable}}%
+	% Set the table’s header: title row
+	\renewcommand*{\glossaryheader}{%
+		\hline
+		\bfseries 中文 & \bfseries 英文 & 
+		\bfseries 縮寫 & \bfseries 頁碼  \\
+		\hline
+		\endhead}%
+	% No table header:
+	%\renewcommand*{\glossaryheader}{}%
+	% No heading between groups:
+	\renewcommand*{\glsgroupheading}[1]{}%
+	% Main (level 0) entries displayed in a row optionally numbered:
+	\renewcommand*{\glossaryentryfield}[5]{%
+		\glstarget{##1}{##2}% Name
+		& ##3% Description
+		& \glsentryuseri{##1}% Units
+		& ##5% Page list
+		\\% end of row
+	}%
+	% Similarly for sub-entries (no sub-entry numbers):
+	\renewcommand*{\glossarysubentryfield}[6]{%
+		% ignoring first argument (sub-level)
+		\glstarget{##2}{##3}% Name
+		& ##4% Description
+		& \glsentryuseri{##2}% Units
+		& ##6% Page list
+		\\% end of row
+	}%
+	% Nothing between groups:
+	\renewcommand*{\glsgroupskip}{}%
+}
+

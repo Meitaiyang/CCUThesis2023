@@ -26,7 +26,7 @@
 \LoadClass[a4paper,12pt]{book}
 
 % Required packages
-\RequirePackage[top=2cm,left=3cm,bottom=3cm,right=3cm]{geometry}
+\RequirePackage[top=2.54cm,left=3.17cm,bottom=2.54cm,right=3.17cm]{geometry}
 \RequirePackage{xeCJK}
 \RequirePackage{setspace}
 \RequirePackage[contents={}]{background}
@@ -52,37 +52,24 @@
 \abstractname{Abstract}{摘要}
 \acknowledgements{Acknowledgements}{誌謝}
 
-%\DeclareRobustCommand{\makecover}{
-%  \begin{titlepage}
-%    \vspace{1cm}
-%    \begin{singlespace}
-%    \begin{center}
-%      \fontsize{18}{27}\selectfont
-%      \@universityzh\@collegezh\@institutezh\par
-%        \@typezh{}\@classzh\par
-%      {\fontsize{14}{21}\selectfont
-%        \@instituteen\par
-%        \@collegeen\par}
-%      {\fontsize{16}{24}\selectfont
-%        \@universityen\par
-%        \@typeen{} \@classen\par}
-%      \vspace{\fill}
-%      \@titlezh\par
-%      \@titleen\par
-%      \vspace{\fill}
-%      \@authorzh\\
-%      \@authoren\par
-%      \vspace{2cm}
-%      指導教授：\@advisorzh \\
-%      Advisor: \@advisoren \par
-%      \vspace{1.5cm}
-%      中華民國 \@yearzh 年 \@monthzh 月\\
-%      \@monthen, \@yearen
-%    \end{center}
-%    \end{singlespace}
-%    \vspace{1cm}
-%  \end{titlepage}
-%}
+\DeclareRobustCommand{\makeFirstPage}{
+	\begin{titlepage}
+		\begin{singlespace}
+      \linespread{1.5}
+      \newgeometry{
+        a4paper,
+        bottom=3cm,
+        top=4cm,
+      }
+			\let\footnotesize\small \let\footnoterule\relax \setcounter{page}{0}
+			\begin{center}
+        \fontsize{28}{24}\selectfont \@universityzh\@institutezh \\
+        \@typezh\@classzh
+      \end{center}
+    \end{singlespace}
+  \end{titlepage}
+
+}
 
 \DeclareRobustCommand{\makecover}{
   \begin{titlepage}
@@ -90,18 +77,20 @@
 	\let\footnotesize\small \let\footnoterule\relax \setcounter{page}{0}
 	\begin{center}
 		\baselineskip 14.5pt \vspace*{0.1in}
-		{\Huge\@titlezh\\[0.25in]\par } 
-		{\LARGE\@titleen\\[1in]\par } 
+		{\Large\bfseries\@titlezh\\[0.25in]\par } 
+		{\Large\bfseries\@titleen\\[1in]\par } 
 	\end{center}
-	{\Large 研究生：\@authorzh} \hspace*{1.73in} {\large Student: \@authoren}\\[0.1in]
-	{\Large 指導教授：\@advisorzh} \hspace*{1in} {\large Advisor: \@advisoren}\\[0.1in]
+	{\Large 研究生：\@authorzh} ~\hfill {\large Student: \@authoren}\\[0.1in]
+	{\Large 指導教授：\@advisorzh} ~\hfill {\large Advisor: \@advisoren}\\[0.1in]
 	{\Large\hspace*{1.2in}\@coadvisorzh} \hspace*{0.96in} {\large\hspace*{0.835in}\@coadvisoren\\}
+  \vspace{\fill}
     \begin{center}
-		{\Large\@universityzh\@collegezh\\\@institutezh\\\@typezh{}\@classzh\\[0.25in]\par}
+		{\Large\@universityzh\@collegezh\\[0.25in]\@institutezh\\[0.25in]\@typezh{}\@classzh\par}
+    \vspace{\fill}
 		{\large A Thesis\\Submitted to\\Institute of \@instituteen\\}
 		{\large \@collegeen\\\@universityen\\}
-		{\large in Partial Fulfillment of the Requirements\\for the Degree of\\Master\\in\\}
-		{\large \@instituteen \\}
+		{\large in Partial Fulfillment of the Requirements\\for the Degree of\\Master in \@instituteen\\}
+		% {\large  \\}
 		{\large \@monthen, \@yearen \\}
 		{\large \@addressen \\[0.25in]}
 		      
@@ -190,45 +179,15 @@
     \end{tabular}}
 }
 
-\DeclareRobustCommand{\makecertification}{
-  \if@openright\cleardoublepage\else\clearpage\fi
-  \begin{singlespace}
-  \begin{center}
-    \fontsize{24}{36}\selectfont\@universityzh\@typezh{}學位\@classzh\\
-    口試委員會審定書\par
-    \vspace{0.5cm}
-    {\fontsize{20}{30}\selectfont\@titlezh\par\@titleen\par}
-  \end{center}
-  \addcontentsline{toc}{chapter}{口試委員會審定書}
-  \vspace{1cm}
-  \fontsize{15}{24}\selectfont
-\hspace{30pt}本論文係\@authorzh{}君 (\@studentid)
-在\@universityzh\@institutezh{}完成之\@typezh{}學位\@classzh，%
-於民國 \@yearzh 年 \@monthzh 月 \@day 日%
-承下列考試委員審查通過及口試及格，特此證明\par
-  \end{singlespace}
-  \vspace{\fill}
-  \begin{center}
-  \begin{doublespace}
-  \fontsize{15}{30}\selectfont
-  \begin{tabular}{p{2.75cm}p{12.5cm}}
-    \raisebox{30pt}{口試委員：} & \rule{11.5cm}{1pt} \\
-    & \rule{5cm}{1pt}\hspace{1.5cm}\rule{5cm}{1pt} \\
-    & \rule{5cm}{1pt}\hspace{1.5cm}\rule{5cm}{1pt} \\
-    & \rule{5cm}{1pt}\hspace{1.5cm}\rule{5cm}{1pt} \\
-    & \rule{5cm}{1pt}\hspace{1.5cm}\rule{5cm}{1pt} \\
-    \raisebox{5pt}{所\hspace{15pt}長：} & \rule{8.5cm}{1pt}
-  \end{tabular}
-  \end{doublespace}
-  \end{center}
-  \vspace*{-1cm}
-}
-
 \newenvironment{quotationpage}[1]
   {\if@openright\cleardoublepage\else\clearpage\fi
+  \titleformat{\chapter}[block]{\fontsize{18pt}{18}\bfseries}{}{1pt}{}
+  \titlespacing{\chapter}{0pt}{6pt}{6pt}
    \chapter*{\centerline{#1}}
+   \setchapleaders{\cftdotsep}
    \addcontentsline{toc}{chapter}{#1}
-   \quotation}
+   %\quotation
+   }
   {\endquotation}
 
 \newenvironment{abstracten}{\begin{quotationpage}{\@abstractnameen}}{\end{quotationpage}}
@@ -236,6 +195,6 @@
 \newenvironment{acknowledgementsen}{\begin{quotationpage}{\@acknowledgementsen}}{\end{quotationpage}}
 \newenvironment{acknowledgementszh}{\begin{quotationpage}{\@acknowledgementszh}}{\end{quotationpage}}
 
-\setcounter{tocdepth}{2}
+\setcounter{tocdepth}{3}
 \pagestyle{plain}
 \@setspacing

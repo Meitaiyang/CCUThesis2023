@@ -1,6 +1,4 @@
 \documentclass[oneside]{ntuthesis}
-
-
 \usepackage{cite} % 使連續的引用可以變成破折號\cite{newcombe2011dtam,engel2014lsd,engel2018direct} ex [4][5][6] => [4-6]
 \usepackage{indentfirst}
 \usepackage{times}
@@ -10,31 +8,30 @@
 \usepackage{graphicx}
 \usepackage{array}
 \usepackage{wallpaper} 
-\usepackage{hyperref}
+\usepackage{etoolbox}
 \usepackage{amsmath}
 \usepackage{amssymb} % \mathbb
+\usepackage{algorithm,algorithmic} %增加建立algorithm的套件
+\usepackage{afterpage}
 
+\usepackage[inline]{enumitem}
+\usepackage{float}
 \usepackage{notoccite}  % 引用編號時忽略圖目錄裡出現的引用 Ignore citations in captions in list of figures when numbering  https://tex.stackexchange.com/questions/36304/ignore-citations-in-captions-in-list-of-figures-when-numbering
+\usepackage[T1]{fontenc} %處理超連結的字形錯誤
+\usepackage{url}
+\urlstyle{rm}
 
-\newcommand{\refFig}[1]{%
-	圖\ref{#1} - p.\pageref{#1}
-}
-
-\newcommand{\refP}[1]{%
-	\ref{#1} - p.\pageref{#1}
-}
+%% ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼  圖片相關  ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼
+\parindent=2em
+\graphicspath{{figures/}} %將圖片路徑整理到figures資料夾
+%% ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲  圖片相關  ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲
 
 \interfootnotelinepenalty=10000 % 防止footnote分頁
-
-\input{glossary} % 中英文字對照
-
-%\usepackage{csvsimple} % 輸入中英文對照表 csv 用
 \usepackage{fancyhdr} % 借用此套件來擺放浮水印  設定頁首頁尾用的套件
 
 %% ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼  數學相關  ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼
 \usepackage{mathtools}
 \DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
-
 \usepackage{siunitx}% degree symbol
 %% ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲  數學相關  ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲
 
@@ -45,25 +42,34 @@
 \captionsetup[table]{skip=5pt}
 \usepackage{threeparttable}
 \usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{diagbox}
+\usepackage{makecell}
+\usepackage{chngcntr}
 
+\counterwithout*{table}{chapter} %book環境table編號會跑掉，用這個套件還原
+\counterwithout*{figure}{chapter}
+\counterwithout*{equation}{chapter}
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}} % 大寫P可以讓table用p時還可以置中
+\renewcommand\tabularxcolumn[1]{m{#1}}
+\renewcommand{\arraystretch}{2}
+% \renewcommand{\arraystretch}{2.5}
 %% ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲  表格相關  ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲
 
 %% ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼  目錄行距  ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼
 \usepackage{tocloft}
+\setlength{\cftaftertoctitleskip}{6pt} %目錄標題行距
+\setlength{\cftafterloftitleskip}{6pt}
+\setlength{\cftafterlottitleskip}{6pt}
 \setlength\cftbeforechapskip{0pt}
-\setlength{\cftbeforesecskip}{-8pt}
-\setlength{\cftbeforesubsecskip}{-8pt}
-\renewcommand{\cftchapafterpnum}{\vspace{5pt}}
-
-\hypersetup{%
-	colorlinks=true,% switch on coloured instead of framed links
-	linkcolor=[rgb]{0.713,0.188,0.09},% main link color (e.g. for the ToC)182,48,23
-	filecolor=magenta,% color of links to external files
-	urlcolor=red,% color to external URLs
-}   
+\setlength{\cftbeforesecskip}{0pt}
+\setlength{\cftbeforesubsecskip}{0pt}
+\renewcommand{\cftchapafterpnum}{\vspace{3pt}}
+\renewcommand{\cftfigafterpnum}{\vskip0pt}
+\renewcommand{\cfttabafterpnum}{\vskip0pt}
+\setlength{\cfttabnumwidth}{3em}
+\setlength{\cftfignumwidth}{3em}
 %% ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲  目錄行距  ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲  
-
-
 
 %% ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼  中文章節  ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼
 \usepackage{titlesec}
@@ -71,24 +77,42 @@
 \usepackage{xCJKnumb}
 \newcommand{\tocformat}{%
 	\titleformat{\chapter}
-		{\huge\bfseries}
-		{第\,\xCJKnumber{\thechapter}\,章}{-3.3em}\\{}
+		{\centering\fontsize{16pt}{16}\bfseries}
+		{第\,\xCJKnumber{\thechapter}\,章}{1em}{}
+	
+	\titleformat{\section}{\fontsize{14pt}{14.4pt}\selectfont\bfseries}{\thesection}{1em}{}
+	\titleformat{\subsection}{\fontsize{12pt}{13.2pt}\selectfont\bfseries}{\thesubsection}{1em}{}
+	\titlespacing{\chapter}{0pt}{6pt}{6pt}
+	\titlespacing{\section}{0pt}{3pt}{3pt}
+	\titlespacing{\subsection}{0pt}{0pt}{0pt}
 }
 \newcommand{\tocformatbib}{%
 	\titleformat{\chapter}
-	{\huge\bfseries}
-	{第\,\xCJKnumber{\thechapter}\,章}{1em}{}	
+		{\centering\fontsize{16pt}{16}\bfseries}
+		{第\,\xCJKnumber{\thechapter}\,章}{1em}{}	
 }
-
-
-\renewcommand{\contentsname}{目錄}
-\renewcommand{\figurename}{圖}
-\renewcommand{\tablename}{表}
-\renewcommand{\listfigurename}{圖目錄}
-\renewcommand{\listtablename}{表目錄}
-\renewcommand{\bibname}{參考文獻}
+\newcommand{\toccontentsformat}{ %目錄格式
+	\titlecontents{chapter}[0pt]{\addvspace{1.5pt}\filright}
+				{\contentspush{第\xCJKnumber{\thecontentslabel}章\quad}}
+				{}{\titlerule*[8pt]{.}\contentspage}
+}
+\newcommand{\tocformatappendix}{
+	\setcounter{section}{0}
+	\setcounter{subsection}{0}
+}
 %% ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲  中文章節  ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲  
 
+%% ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼  目錄相關  ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼ 
+\renewcommand{\contentsname}{\hfill\fontsize{16pt}{16} 目錄\hfill}
+\renewcommand{\listfigurename}{\hfill\fontsize{16pt}{16}\bfseries 圖目錄\hfill}
+\renewcommand{\listtablename}{\hfill\fontsize{16pt}{16}\bfseries 表目錄\hfill}
+\renewcommand{\figurename}{}
+\renewcommand{\thefigure}{圖\arabic{figure}}
+\renewcommand{\tablename}{}
+\renewcommand{\thetable}{表\arabic{table}}
+\renewcommand{\bibname}{參考文獻}
+\renewcommand{\theequation}{\arabic{equation}}
+%% ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲  目錄相關  ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲  
 
 %% ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼  浮水印    ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼
 \pagestyle{fancy} % 啟動 fancy header/footer 套件
@@ -98,37 +122,53 @@
 \input{watermark.tex}
 %% ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲  浮水印    ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲  
 
-
-%% ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼  頁首頁尾  ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼
-\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
-\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
-
-\pagestyle{fancy} % 啟動 fancy header/footer 套件
-
-\fancypagestyle{normal_chapter}{%
-	\renewcommand{\headrulewidth}{0.5pt}
-	\addtolength{\headwidth}{\marginparsep}
-	\addtolength{\headwidth}{\marginparwidth}
-	\addtolength{\headwidth}{-33mm}
-	%% 頁首 - 右
-	\rhead[\fancyplain{}{\bfseries\leftmark}]{%
-		\fancyplain{}{\bfseries\thepage}
-	}
-	%% 頁首 - 左
-	\lhead[\fancyplain{}{\bfseries\thepage}]{%
-		\fancyplain{}{\bfseries\rightmark}
-	}
-	\cfoot{} % 清除頁尾頁碼
+%% ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼  編號相關  ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼
+\newenvironment{descitemize} % a mixture of description and itemize
+  {\begin{description}[
+	topsep=0pt, 
+	parsep=0pt, 
+	itemsep=0pt, 
+	labelsep=3pt, 
+	leftmargin=0pt, 
+	listparindent=1pt, 
+	before=\let\makelabel\descitemlabel]}
+  {\end{description}}
+\newcommand{\descitemlabel}[1]{%
+  \textbullet\ \textbf{#1}%
 }
-%% ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲  頁首頁尾  ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲
+\setlist[enumerate]{
+	topsep=0pt, 
+	parsep=0pt, 
+	itemsep=0pt, 
+	labelsep=3pt, 
+	leftmargin=*, 
+	% itemindent=!, 
+	listparindent=2em,
+	label=\textbf{\arabic*.}
+}
+\setlist[itemize]{
+	topsep=0pt, 
+	parsep=0pt, 
+	itemsep=0pt, 
+	labelsep=3pt, 
+	leftmargin=*, 
+	% itemindent=1em, 
+	listparindent=2em,
+}
+%% ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲  編號相關  ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲
 
+%% ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼  演算法相關  ▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼▼
+\renewcommand{\algorithmiccomment}[1]{\hspace{1em}~//\emph{#1}} %修改演算法的註解格式
+%% ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲  演算法相關  ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲
 
 % Using the tex-text mapping for ligatures etc.
 \defaultfontfeatures{Mapping=tex-text}
 
 % Set the default fonts
 \setmainfont{Times New Roman}
-\setCJKmainfont{標楷體}
+\setCJKmainfont[AutoFakeBold=true, AutoFakeSlant=.2]{標楷體} %for Windows OS
+% \setCJKmainfont[AutoFakeBold=true, AutoFakeSlant=.2]{楷體-繁} % for MacOS
+% \setCJKmainfont[AutoFakeBold=true, AutoFakeSlant=.2]{DFKai-SB} %for Ubuntu
 % Windows 字型
 % > dir %windir%\fonts
 
@@ -152,75 +192,91 @@
     pdfkeywords={\@keywordsen}
   }
 }
+
+% 這些要放在hyperref套件前面，要不然lot的行距會壞掉
+\patchcmd{\@chapter}
+  {\addtocontents{lof}{\protect\addvspace{10\p@}}}
+  {}
+  {}{}
+\patchcmd{\@chapter}
+  {\addtocontents{lot}{\protect\addvspace{10\p@}}}
+  {}
+  {}{}
+
 \makeatother
+
+\usepackage[hidelinks,linktoc=all]{hyperref} %可建立註解以及參考文獻網址的超連結
+\hypersetup{%
+	colorlinks=false,% switch on coloured instead of framed links
+	linkcolor=black,% main link color (e.g. for the ToC)182,48,23
+}   
+
+\newcommand{\blankpage}{ %插入空白頁面
+    \null
+    \thispagestyle{empty}%
+    \addtocounter{page}{-1}%
+    \newpage}
+
+
+\newcommand{\setchapleaders}[1]{
+	\addtocontents{toc}{%
+		\protect\renewcommand{\protect\cftchapdotsep}{#1}% set chapter leaders
+	}
+}
 
 % Your information goes here
 \input{thesis_vars}
 
-
-
-
 \begin{document}
-
+	
 	\frontmatter
-	
 	\makecover
-	
-	\makecertification
-	
-	\input{acknowledgements}
-	\input{abstract}
+	\afterpage{\blankpage}
+	\toccontentsformat
+	\addtocontents{toc}{\protect \hbox to \textwidth{{章節}~\hfill{頁碼}}} %要放在 \input{chapters/acknowledgements.tex} \input {chapters/abstract.tex} 前面
+	\input{chapters/acknowledgements.tex}
+	\input{chapters/abstract.tex}
 	\clearpage % 換頁
+	
 	{
-	\hypersetup{%
+		\hypersetup{%
 			pdfborder = {0 0 0}%移除超連結外的紅框框
 		} 
-	    \addtocontents{toc}{\protect{\pdfbookmark[0]{\contentsname}{toc}}}%把目錄頁加入pdf書籤
+		
+		\addcontentsline{toc}{chapter}{目錄}
 		\tableofcontents  
+		\cleardoublepage
+		\addcontentsline{toc}{chapter}{圖目錄}
 		\listoffigures
-		
-		\clearpage % 換頁
+		\addtocontents{lof}{\protect\hbox to \textwidth{\hspace{15pt} {圖}~\hfill{頁碼}}} %dirty hack
+		\cleardoublepage
+		\addcontentsline{toc}{chapter}{表目錄}
 		\listoftables 
-		
-		\clearpage
-		\glossarystyle{aiaostyle}                     % 中英文字對照
-		\setlength{\glsdescwidth}{0.5\textwidth}      % 中英文字對照
-		\setlength{\glspagelistwidth}{0.1\textwidth}  % 中英文字對照
-		\printglossary[title={中英文字對照}]           % 中英文字對照
-		
-%		\chapter*{中英文字對照}
-%
-%		\csvreader[tabular=l l l l ,
-%				   table head=\hline & 中文 & 英文 & 縮寫\\\hline,
-%        		   late after line=\\\hline]%
-%			{eng_cht_table.csv}%
-%			{zh=\zh,eng=\eng,abbrev=\abbrev}%
-%			{\thecsvrow & \zh & \eng & \abbrev}%
-		
+		\addtocontents{lot}{\protect\hbox to \textwidth{\hspace{15pt} {表}~\hfill{頁碼}}}
+		\cleardoublepage
 	}
 	
 	\mainmatter
 	
-	\pagestyle{normal_chapter} %改變頁首、頁尾樣式 (不包含chapter頁 (plain))
-
 	\tocformat
 	% Your thesis goes here
-	\input{introduction}
-	%\input{related}
-	%\input{method}
-	%\input{experiment}
-	%\input{conclusion}
-
+	\input{chapters/introduction.tex}
+	\input{chapters/relatedWork.tex}
+	\input{chapters/processing.tex}
+	\input{chapters/testing.tex}
+	\input{chapters/conclusion.tex}
 	
 	\tocformatbib
 	\appendix
-	
+
 	\backmatter
-	
+
 	%% 參考文獻
 	\addcontentsline{toc}{chapter}{\bibname} %摘要、文獻等頁碼編進目錄
 	\bibliographystyle{IEEEtran}
 	\bibliography{thesis}
-
+	%附錄 要放在\backmatter後
+	\counterwithin*{section}{chapter}
+	\input{chapters/appendix.tex}
 
 \end{document}
